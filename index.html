@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue - Page Waouh</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background: linear-gradient(45deg, #0a0a0a, #3a4452);
+            color: white;
+        }
+
+        /* Conteneur principal */
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Titre avec animation */
+        h1 {
+            font-size: 4em;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: fadeIn 2s ease-in-out, glow 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #fff, 0 0 20px #00f7ff, 0 0 30px #00f7ff;
+            }
+            to {
+                text-shadow: 0 0 20px #fff, 0 0 30px #ff00ff, 0 0 40px #ff00ff;
+            }
+        }
+
+        /* Sous-titre */
+        p {
+            font-size: 1.5em;
+            margin: 20px 0;
+            opacity: 0;
+            animation: fadeIn 2s ease-in-out 0.5s forwards;
+        }
+
+        /* Bouton stylé */
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            text-transform: uppercase;
+            color: #fff;
+            background: linear-gradient(45deg, #ff00ff, #00f7ff);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: pulse 2s infinite;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Effet de parallaxe pour l'arrière-plan */
+        .parallax-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c') no-repeat center center/cover;
+            z-index: 1;
+            opacity: 0.3;
+            transform: translateZ(0);
+        }
+
+        /* Particules */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="parallax-bg"></div>
+    <div id="particles-js"></div>
+    <div class="container">
+        <h1>Bienvenue !</h1>
+        <p>Découvrez un univers d'innovations et de surprises !</p>
+        <button class="btn">Explorer</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        // Initialisation de Particles.js
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: '#ffffff' },
+                shape: { type: 'circle', stroke: { width: 0, color: '#000000' } },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#ffffff',
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: 'none',
+                    random: false,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: { enable: true, mode: 'repulse' },
+                    onclick: { enable: true, mode: 'push' },
+                    resize: true
+                },
+                modes: {
+                    repulse: { distance: 100, duration: 0.4 },
+                    push: { particles_nb: 4 }
+                }
+            },
+            retina_detect: true
+        });
+
+        // Effet de parallaxe au défilement
+        window.addEventListener('scroll', () = {
+            const parallax = document.querySelector('.parallax-bg');
+            let scrollPosition = window.pageYOffset;
+            parallax.style.transform = `translateY(${scrollPosition * 0.5}px)`;
+        });
+
+        // Animation du bouton au clic
+        document.querySelector('.btn').addEventListener('click', () => {
+            alert('Prêt à explorer ? 🚀')
+        });
+    </script>
+</body>
+</html>
