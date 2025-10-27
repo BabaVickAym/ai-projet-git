@@ -161,7 +161,7 @@
         });
 
         // Effet de parallaxe au défilement
-        window.addEventListener('scroll', () = {
+        window.addEventListener('scroll', () => {
             const parallax = document.querySelector('.parallax-bg');
             let scrollPosition = window.pageYOffset;
             parallax.style.transform = `translateY(${scrollPosition * 0.5}px)`;
